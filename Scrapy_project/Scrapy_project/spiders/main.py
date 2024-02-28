@@ -23,11 +23,11 @@ class QuotesSpider(scrapy.Spider):
             yield scrapy.Request(url=self.start_urls[0] + next_page)
 
     def closed(self, reason):
-        # Read the generated JSON file
+
         with open("quotes.json", "r", encoding="utf-8") as file:
             data = json.load(file)
 
-        # Rewrite the JSON file without Unicode escape sequences
+
         with open("quotes.json", "w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
 
